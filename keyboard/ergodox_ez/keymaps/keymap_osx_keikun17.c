@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,         KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   KC_QUOT,
         KC_LCTRL,       KC_A,         KC_S,   KC_D,   KC_F,   KC_G,
         KC_LSFT,        CTL_T(KC_Z),  KC_X,   KC_C,   KC_V,   KC_B,   ALL_T(KC_NO),
-        KC_FN1,         KC_ESC,       LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
+        M(1),           KC_ESC,       LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
                                                       KC_LALT,KC_LGUI,
                                                               KC_HOME,
                                                KC_SPC,KC_BSPC,KC_END,
@@ -150,6 +150,14 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
           unregister_code(KC_RSFT);
         }
         break;
+
+        // M(1) : Tmux key
+        case 1:
+        if (record->event.pressed) {
+          return MACRO( D(LCTL), T(A), U(LCTL), END );
+        } 
+        break;
+        
       }
     return MACRO_NONE;
 };
