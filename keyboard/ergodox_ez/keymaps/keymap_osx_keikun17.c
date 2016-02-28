@@ -10,9 +10,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |  Grv   |   1  |   2  |   3  |   4  |   5  |  =   |           |   -  |   6  |   7  |   8  |   9  |   0  | Bckspc |
+ * |  Grv   |   1  |   2  |   3  |   4  |   5  |  '"  |           |  L1  |   6  |   7  |   8  |   9  |   0  | Bckspc |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |  Tab   |   Q  |   W  |   E  |   R  |   T  |  '"  |           |  L1  |   Y  |   U  |   I  |   O  |   P  |   \    |
+ * |  Tab   |   Q  |   W  |   E  |   R  |   T  |  -_  |           |  =+  |   Y  |   U  |   I  |   O  |   P  |   \    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |  Ctrl  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |; / L2|  LGui  |
  * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
@@ -32,8 +32,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
 [BASE] = KEYMAP(  // layer 0 : default
         // left hand
-        KC_GRV,         KC_1,         KC_2,          KC_3,     KC_4,        KC_5,        KC_EQL,
-        KC_TAB,         KC_Q,         KC_W,          KC_E,     KC_R,        KC_T,        KC_QUOT,
+        KC_GRV,         KC_1,         KC_2,          KC_3,     KC_4,        KC_5,        KC_QUOT,
+        KC_TAB,         KC_Q,         KC_W,          KC_E,     KC_R,        KC_T,        KC_MINS,
         KC_LCTRL,       KC_A,         KC_S,          KC_D,     KC_F,        KC_G,
         KC_LSFT,        CTL_T(KC_Z),  KC_X,          KC_C,     ALT_T(KC_V), GUI_T(KC_B), ALL_T(KC_NO),
         M(1),           KC_ESC,       LALT(KC_LSFT), KC_LEFT,  KC_RGHT,
@@ -41,10 +41,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                KC_LALT,  KC_LGUI,
                                                                                          KC_HOME,
                                                                         KC_SPC,KC_BSPC,  KC_END,
-                                                                       
+
         // right hand
-        KC_MINS,        KC_6,         KC_7,          KC_8,     KC_9,        KC_0,               KC_BSPC,
-        TG(1),          KC_Y,         KC_U,          KC_I,     KC_O,        KC_P,               KC_BSLS,
+        TG(1),          KC_6,         KC_7,          KC_8,     KC_9,        KC_0,               KC_BSPC,
+        KC_EQL,         KC_Y,         KC_U,          KC_I,     KC_O,        KC_P,               KC_BSLS,
                         KC_H,         KC_J,          KC_K,     KC_L,        LT(MDIA, KC_SCLN),  KC_LGUI,
         MEH_T(KC_NO),   GUI_T(KC_N),  ALT_T(KC_M),   KC_COMM,  KC_DOT,      CTL_T(KC_SLSH),     KC_RSFT,
                                       KC_UP,         KC_DOWN,  KC_LBRC,     KC_RBRC,            KC_QUOT,
@@ -158,9 +158,9 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
         case 1:
         if (record->event.pressed) {
           return MACRO( D(LCTL), T(A), U(LCTL), END );
-        } 
+        }
         break;
-        
+
       }
     return MACRO_NONE;
 };
