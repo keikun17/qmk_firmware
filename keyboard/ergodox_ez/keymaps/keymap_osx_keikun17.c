@@ -21,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   |Ctrl+A|  Esc |AltShf| Left | Right|                                       |  Up  | Down |   [  |   ]  |  '"  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        | LAlt | LGui |       | Esc  | RAlt |
+ *                                        |Leader| LGui |       | Esc  | RAlt |
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      | Home |       | PgUp |        |      |
  *                                 | Space|Backsp|------|       |------|  Tab   |Enter |
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT,        CTL_T(KC_Z),  KC_X,          KC_C,     ALT_T(KC_V), GUI_T(KC_B), ALL_T(KC_NO),
         M(1),           KC_ESC,       LALT(KC_LSFT), KC_LEFT,  KC_RGHT,
 
-                                                                               KC_LALT,  KC_LGUI,
+                                                                               KC_LEAD,  KC_LGUI,
                                                                                          KC_HOME,
                                                                         KC_SPC,KC_BSPC,  KC_END,
 
@@ -192,4 +192,24 @@ void * matrix_scan_user(void) {
             break;
     }
 
+
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    SEQ_ONE_KEY(KC_W) {
+      register_code(KC_LALT);
+      register_code(KC_F4);
+      unregister_code(KC_F4);
+      unregister_code(KC_LALT);
+    }
+    SEQ_ONE_KEY(KC_O) {
+      register_code(KC_LCTL);
+      register_code(KC_LSFT);
+      register_code(KC_O);
+      unregister_code(KC_O);
+      unregister_code(KC_LSFT);
+      unregister_code(KC_LCTL);
+    }
+  }
 };
